@@ -6,7 +6,7 @@ void GameEngine::Component::setEnabled(bool enabled)
 	if (!m_enabled && enabled)
 		onEnabled();
 	else if (m_enabled && !enabled)
-		onDisbale();
+		onDisable();
 
 	m_enabled = enabled;
 }
