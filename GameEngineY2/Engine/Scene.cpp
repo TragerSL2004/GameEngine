@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Entity.h"
 #include "Physics/ColliderComponent.h"
+#include "Physics/RigidBodyComponent.h"
 
 GameEngine::Scene::Scene()
 {
@@ -42,7 +43,7 @@ void GameEngine::Scene::fixedUpdate(float fixedDeltaTime)
 
 	onFixedUpdate(fixedDeltaTime);
 
-	// Update Colliders
+// Update Colliders
 	for (auto row = m_activeColliders.begin(); row != m_activeColliders.end(); row++)
 	{
 		for (auto column = row; column != m_activeColliders.end(); column++)
@@ -57,10 +58,10 @@ void GameEngine::Scene::fixedUpdate(float fixedDeltaTime)
 
 			if (collisionData1 = collider1->checkCollision(collider2))
 			{
-				// Get collider 1 rigid body and resolve collision
+				collider1->getRigidBody()->resolveCollision(collisionData1);
 
 				collider1->getOwner()->onCollisionEnter(collisionData1);
-				
+
 				collisionData2->normal = collisionData1->normal * -1;
 				collisionData2->collider = collider1;
 				collider2->getOwner()->onCollisionEnter(collisionData2);
