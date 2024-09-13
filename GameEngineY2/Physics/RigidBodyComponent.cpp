@@ -24,5 +24,5 @@ void GamePhysics::RigidBodyComponent::fixedUpdate(float fixedDeltaTime)
 
 void GamePhysics::RigidBodyComponent::resolveCollision(GamePhysics::Collision* collisionData)
 {
-	
+
 }

@@ -58,7 +58,7 @@ void GameEngine::Scene::fixedUpdate(float fixedDeltaTime)
 
 			if (collisionData1 = collider1->checkCollision(collider2))
 			{
-				collider1->getRigidBody()->resolveCollision(collisionData1);
+				//collider1->getRigidBody()->resolveCollision(collisionData1);
 
 				collider1->getOwner()->onCollisionEnter(collisionData1);
 

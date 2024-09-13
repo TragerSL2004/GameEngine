@@ -6,16 +6,18 @@ namespace GamePhysics
 	class AABBColliderComponent : public ColliderComponent
 	{
 	public:
-		AABBColliderComponent(float radius) : ColliderComponent() { m_radius = radius; }
+		AABBColliderComponent(int width, int height) : ColliderComponent() { m_width = width, m_height = height; }
 
 		GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other) override;
 		GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other) override;
 
 		void draw() override;
 
-		float getRadius() { return m_radius; }
+		int getWidth() { return m_width; }
+		int getHeight() { return m_height; }
 
 	private:
-		float m_radius;
+		int m_width;
+		int m_height;
 	};
 }
