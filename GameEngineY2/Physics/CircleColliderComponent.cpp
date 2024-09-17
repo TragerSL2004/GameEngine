@@ -28,16 +28,20 @@ GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionAABB
 {
     GameMath::Vector2 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
     GameMath::Vector2 position = getOwner()->getTransform()->getGlobalPosition();
-    int BoxMaxX = other->getWidth();
-    int BoxMaxY = other->getHeight();
+    int BoxMaxX = other->getWidth() / 2;
+    int BoxMaxY = other->getHeight() / 2;
     GameMath::Vector2 direction = otherPosition - position;
     float distance = direction.getMagnitude();
-    return nullptr;
 
-    GamePhysics::Collision* collisionData = new Collision();
-    collisionData->collider = other;
-    collisionData->normal = direction.getNormalized();
-    return collisionData;
+    if (distance < BoxMaxX || distance < BoxMaxY)
+    {
+        GamePhysics::Collision* collisionData = new Collision();
+        collisionData->collider = other;
+        collisionData->normal = direction.getNormalized();
+        return collisionData;
+    }
+
+    return nullptr;
 }
 
 void GamePhysics::CircleColliderComponent::draw()

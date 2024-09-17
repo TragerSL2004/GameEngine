@@ -4,6 +4,7 @@
 #include "Engine/TransformComponent.h"
 #include "Physics/RigidBodyComponent.h"
 #include "Physics/CircleColliderComponent.h"
+#include "Physics/AABBColliderComponent.h"
 #include <chrono>
 
 void TestScene::onStart()
@@ -32,7 +33,10 @@ void TestScene::onStart()
 	m_floor = new GameEngine::Entity();
 	m_floor->getTransform()->setLocalScale({ 1000, 100 });
 	m_floor->getTransform()->setLocalPosition({ 400, 740 });
-	m_floor->addComponent<Graphics::ShapeComponent>()->setShapeType(Graphics::BOX);
+	m_floor->addComponent<Graphics::ShapeComponent>()->setShapeType(Graphics::CIRCLE);
+	m_floor->addComponent(new GamePhysics::CircleColliderComponent(210));
+	m_floor->addComponent(new GamePhysics::RigidBodyComponent());
+	m_floor->getComponent<GamePhysics::RigidBodyComponent>()->setGravity(0);
 
 	addEntity(m_floor);
 
@@ -53,6 +57,5 @@ void TestScene::onStart()
 
 void TestScene::onUpdate(double deltaTime)
 {
-
 	float currentTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
 }
