@@ -6,7 +6,7 @@ namespace GamePhysics
 	class AABBColliderComponent : public ColliderComponent
 	{
 	public:
-		AABBColliderComponent(int width, int height) : ColliderComponent() { m_width = width, m_height = height; }
+		AABBColliderComponent(int width, int height) : ColliderComponent() { m_width = width, m_height = height, setColliderType(AABB); }
 
 		GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other) override;
 		GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other) override;

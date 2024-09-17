@@ -7,14 +7,40 @@
 
 GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionCircle(CircleColliderComponent* other)
 {
+    GameMath::Vector2 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
+    GameMath::Vector2 position = getOwner()->getTransform()->getGlobalPosition();
+    GameMath::Vector2 direction = otherPosition - position;
 
-    return nullptr;
+    if (position.x < otherPosition.x + other->getRadius() && position.x + getWidth() > otherPosition.x
+        && position.y < otherPosition.y + other->getRadius() && position.y + getHeight() > otherPosition.y)
+    {
+        GamePhysics::Collision* collisionData = new Collision();
+        collisionData->collider = other;
+        collisionData->normal = direction.getNormalized();
+        return collisionData;
+    }
+
+    else
+        return nullptr;
 }
 
 GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionAABB(AABBColliderComponent* other)
 {
-    
-    return nullptr;
+    GameMath::Vector2 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
+    GameMath::Vector2 position = getOwner()->getTransform()->getGlobalPosition();
+    GameMath::Vector2 direction = otherPosition - position;
+
+    if (position.x < otherPosition.x + other->getWidth() && position.x + getWidth() > otherPosition.x
+        && position.y < otherPosition.y + other->getHeight() && position.y + getHeight() > otherPosition.y)
+    {
+        GamePhysics::Collision* collisionData = new Collision();
+        collisionData->collider = other;
+        collisionData->normal = direction.getNormalized();
+        return collisionData;
+    }
+
+    else
+        return nullptr;
 }
 
 void GamePhysics::AABBColliderComponent::draw()
