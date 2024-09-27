@@ -17,6 +17,7 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionCircle
         GamePhysics::Collision* collisionData = new Collision();
         collisionData->collider = other;
         collisionData->normal = direction.getNormalized();
+        collisionData->penetrationDistance = getWidth() + getHeight() + other->getRadius() - direction.getMagnitude();
         return collisionData;
     }
 

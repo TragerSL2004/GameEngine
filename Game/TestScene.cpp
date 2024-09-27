@@ -23,20 +23,20 @@ void TestScene::onStart()
 	//Set up box 1
 	m_box1 = new GameEngine::Entity();
 	m_box1->getTransform()->setLocalScale({ 40, 40 });
-	m_box1->getTransform()->setLocalPosition({ 130, 150 });
+	m_box1->getTransform()->setLocalPosition({130, 150 });
 	m_box1->addComponent<Graphics::ShapeComponent>()->setShapeType(Graphics::BOX);
 	m_box1->addComponent(new GamePhysics::AABBColliderComponent(50, 50));
 	m_box1->addComponent(new GamePhysics::RigidBodyComponent());
-	m_box1->getComponent<GamePhysics::RigidBodyComponent>()->setGravity(1);
 	addEntity(m_box1);
 
 	//Set up floor
 	m_floor = new GameEngine::Entity();
-	m_floor->getTransform()->setLocalScale({ 1100, 100 });
-	m_floor->getTransform()->setLocalPosition({ 200, 740 });
+	m_floor->getTransform()->setLocalScale({ 2000, 100 });
+	m_floor->getTransform()->setLocalPosition({ 100, 740 });
 	m_floor->addComponent<Graphics::ShapeComponent>()->setShapeType(Graphics::BOX);
-	m_floor->addComponent(new GamePhysics::AABBColliderComponent(1120, 110));
+	m_floor->addComponent(new GamePhysics::AABBColliderComponent(2020, 110));
 	m_floor->addComponent(new GamePhysics::RigidBodyComponent());
+	m_floor->getComponent<GamePhysics::RigidBodyComponent>()->setMass(500);
 	m_floor->getComponent<GamePhysics::RigidBodyComponent>()->setGravity(0);
 
 	addEntity(m_floor);
