@@ -36,6 +36,7 @@ void TestScene::onStart()
 	m_floor->addComponent<Graphics::ShapeComponent>()->setShapeType(Graphics::BOX);
 	m_floor->addComponent(new GamePhysics::AABBColliderComponent(2020, 110));
 	m_floor->addComponent(new GamePhysics::RigidBodyComponent());
+	//Stop floor from bouncing on collisions
 	m_floor->getComponent<GamePhysics::RigidBodyComponent>()->setMass(500);
 	m_floor->getComponent<GamePhysics::RigidBodyComponent>()->setGravity(0);
 

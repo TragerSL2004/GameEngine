@@ -25,6 +25,7 @@ void GamePhysics::RigidBodyComponent::fixedUpdate(float fixedDeltaTime)
 
 void GamePhysics::RigidBodyComponent::resolveCollision(GamePhysics::Collision* collisionData)
 {
+	//Stored variables for impulse calculation
 	RigidBodyComponent* rigidBody = collisionData->collider->getRigidBody();
 	GameMath::Vector2 velocity1 = getVelocity();
 	GameMath::Vector2 velocity2 = collisionData->collider->getRigidBody()->getVelocity();
@@ -32,6 +33,7 @@ void GamePhysics::RigidBodyComponent::resolveCollision(GamePhysics::Collision* c
 	float mass2 = collisionData->collider->getRigidBody()->getMass();
 	GameMath::Vector2 normal = collisionData->normal;
 
+	//Calculate constant
 	float j = 2 * GameMath::Vector2::dotProduct(velocity1 - velocity2, normal) 
 		/GameMath::Vector2::dotProduct(normal, normal) * (1/mass1 + 1/mass2);
 

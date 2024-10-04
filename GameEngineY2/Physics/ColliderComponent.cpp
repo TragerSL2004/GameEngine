@@ -26,10 +26,12 @@ GamePhysics::Collision* GamePhysics::ColliderComponent::checkCollision(ColliderC
 
 void GamePhysics::ColliderComponent::onCollisionEnter(GamePhysics::Collision* other)
 {
+	//Set color to red on collisions
 	m_color = 0xFF0000FF;
 }
 
 void GamePhysics::ColliderComponent::update(double deltaTime)
 {
+	//Set color to green every frame
 	m_color = 0x00FF00FF;
 }
